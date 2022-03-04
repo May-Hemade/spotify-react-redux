@@ -1,6 +1,6 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux"
-
 import thunk from "redux-thunk"
+import homeReducer from "../reducers/homeReducer"
 
 const aComposeFunction = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
