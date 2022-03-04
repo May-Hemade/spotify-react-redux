@@ -1,10 +1,11 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React from "react"
+import { Link, withRouter } from "react-router-dom"
+import Playlist from "./Playlist"
 
 class Sidebar extends React.Component {
   state = {
     searchInput: "",
-  };
+  }
 
   render() {
     return (
@@ -46,6 +47,9 @@ class Sidebar extends React.Component {
                       <i className="fas fa-book-open fa-lg"></i>&nbsp; Your
                       Library
                     </Link>
+                  </li>
+                  <li className="nav-item nav-link">
+                    <Playlist></Playlist>
                   </li>
                   {this.props.location.pathname === "/" && (
                     <li>
@@ -97,8 +101,8 @@ class Sidebar extends React.Component {
           </div>
         </nav>
       </div>
-    );
+    )
   }
 }
 
-export default withRouter(Sidebar);
+export default withRouter(Sidebar)
