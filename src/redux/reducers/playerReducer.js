@@ -10,6 +10,9 @@ const playerReducer = (state = initialState.player, action) => {
             }
             default:
                 return state
+                
+                 
+                
     }
 
    

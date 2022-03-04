@@ -1,20 +1,36 @@
 import React from "react";
 import { Row } from "react-bootstrap";
-import {connect} from "react-redux"
-const mapStateToProps = (state) => ({
-songDetails: state.player.selectedSong
-})
+import { connect } from "react-redux";
+const mapStateToProps = (state) => state.player;
 
-
-
-const Player = ({songDetails}) => (
+const Player = ({ selectedSong }) => (
   <div className="container-fluid fixed-bottom bg-container pt-1">
-    <div className="text-center text-white">{songDetails.title}</div>
     <Row>
-    
       <div className="col-lg-10 offset-lg-2">
         <Row>
-          
+          <div>
+            {selectedSong && selectedSong !== undefined ? (
+              <div>
+                <img width={25} src={selectedSong.cover} />
+                <div className="text-center text-white">
+                  {selectedSong.artist && selectedSong.artist.name}
+                </div>
+                <div className="text-center text-white">
+                  {selectedSong.title}
+                  {selectedSong.duration && (
+                    <div>
+                      {Math.floor(parseInt(selectedSong.duration) / 60)}:
+                      {parseInt(selectedSong.duration) % 60 < 10
+                        ? "0" + (parseInt(selectedSong.duration) % 60)
+                        : parseInt(selectedSong.duration) % 60}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </div>
           <div className="col-6 col-md-4 col-lg-2 offset-3 offset-md-4 offset-lg-5 playerControls mt-1">
             <Row>
               <a href="/">
@@ -35,7 +51,7 @@ const Player = ({songDetails}) => (
             </Row>
           </div>
         </Row>
-        
+
         <Row className="justify-content-center playBar py-3">
           <div className="col-8 col-md-6">
             <div id="progress">
@@ -54,4 +70,4 @@ const Player = ({songDetails}) => (
   </div>
 );
 
-export default connect(mapStateToProps,)(Player)
+export default connect(mapStateToProps)(Player);

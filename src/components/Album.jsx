@@ -27,6 +27,7 @@ class Album extends React.Component {
 
       if (response.ok) {
         let album = await response.json();
+        album.tracks.data = album.tracks.data.map(track=>({...track,cover:album.cover_big}))
         this.setState({
           album,
           songs: album.tracks.data,
