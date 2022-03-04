@@ -1,5 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { AiFillHeart } from "react-icons/ai";
+import { BsHeart } from "react-icons/bs";
+import { connect } from "react-redux";
+import { addToLikedAction } from "../redux/actions";
+import { removeFromLikedAction } from "../redux/actions";
+const mapStateToProps = (state) => ({
+  playlist: state.playlist.tracks,
+  likedSongs: state.liked.songs,
+});
+const mapDispatchToProps = (dispatch) => ({
+ removeFromLiked: (songs) => dispatch(removeFromLikedAction(songs)),
+addToLiked: (songs) => dispatch(addToLikedAction(songs)),
+});
+const Song = ({ track, likedSongs, addToLiked, removeFromLiked }) => {
+  const isLiked = likedSongs.includes(track);
+  console.log(isLiked, likedSongs);
+  const toggleLiked = () => {
+    isLiked ? removeFromLiked(track) : addToLiked(track);
+  };
 
 const AlbumCard = ({ song }) => {
   return (
@@ -12,6 +31,21 @@ const AlbumCard = ({ song }) => {
       <p>
         <Link to={"/album/" + song?.album.id}>
           <span>Album:&nbsp;</span>
+          <span>
+          {isLiked ? (
+            <AiFillHeart
+              size={22}
+              className="likeheart"
+              onClick={toggleLiked}
+            />
+          ) : (
+            <BsHeart
+              size={22}
+              className=" me-4 my-auto likeheart"
+              onClick={toggleLiked}
+            />
+          )}
+        </span>
           <span>
             "
             {song?.album.title.length < 16
@@ -30,5 +64,6 @@ const AlbumCard = ({ song }) => {
     </div>
   );
 };
+}
 
-export default AlbumCard;
+export default connect(mapStateToProps, mapDispatchToProps)(AlbumCard);
