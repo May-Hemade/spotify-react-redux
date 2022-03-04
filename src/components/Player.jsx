@@ -1,11 +1,20 @@
 import React from "react";
 import { Row } from "react-bootstrap";
+import {connect} from "react-redux"
+const mapStateToProps = (state) => ({
+songDetails: state.player.selectedSong
+})
 
-const Player = () => (
+
+
+const Player = ({songDetails}) => (
   <div className="container-fluid fixed-bottom bg-container pt-1">
+    <div className="text-center text-white">{songDetails.title}</div>
     <Row>
+    
       <div className="col-lg-10 offset-lg-2">
         <Row>
+          
           <div className="col-6 col-md-4 col-lg-2 offset-3 offset-md-4 offset-lg-5 playerControls mt-1">
             <Row>
               <a href="/">
@@ -26,6 +35,7 @@ const Player = () => (
             </Row>
           </div>
         </Row>
+        
         <Row className="justify-content-center playBar py-3">
           <div className="col-8 col-md-6">
             <div id="progress">
@@ -44,4 +54,4 @@ const Player = () => (
   </div>
 );
 
-export default Player;
+export default connect(mapStateToProps,)(Player)
