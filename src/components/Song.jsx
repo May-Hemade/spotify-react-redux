@@ -25,10 +25,10 @@ const Song = ({ track, likedSongs, addToLiked, removeFromLiked }) => {
       </span>
       <span>
         {isLiked ? (
-          <AiFillHeart size={28} className="likeheart" onClick={toggleLiked} />
+          <AiFillHeart size={22} className="likeheart" onClick={toggleLiked} />
         ) : (
           <BsHeart
-            size={28}
+            size={22}
             className=" me-4 my-auto likeheart"
             onClick={toggleLiked}
           />
