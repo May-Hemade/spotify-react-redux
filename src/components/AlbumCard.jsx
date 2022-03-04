@@ -6,21 +6,19 @@ import { connect } from "react-redux";
 import { addToLikedAction } from "../redux/actions";
 import { removeFromLikedAction } from "../redux/actions";
 const mapStateToProps = (state) => ({
-  playlist: state.playlist.tracks,
-  likedSongs: state.liked.songs,
+ likedSongs: state.liked.songs,
 });
 const mapDispatchToProps = (dispatch) => ({
  removeFromLiked: (songs) => dispatch(removeFromLikedAction(songs)),
 addToLiked: (songs) => dispatch(addToLikedAction(songs)),
 });
-const Song = ({ track, likedSongs, addToLiked, removeFromLiked }) => {
+
+const AlbumCard = ({ song , likedSongs, addToLiked, removeFromLiked }) => {
   const isLiked = likedSongs.includes(track);
   console.log(isLiked, likedSongs);
   const toggleLiked = () => {
     isLiked ? removeFromLiked(track) : addToLiked(track);
   };
-
-const AlbumCard = ({ song }) => {
   return (
     <div className="col text-center" id={song?.id}>
       <Link to={"/album/" + song?.album.id}>
@@ -64,6 +62,6 @@ const AlbumCard = ({ song }) => {
     </div>
   );
 };
-}
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(AlbumCard);
