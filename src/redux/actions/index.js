@@ -1,5 +1,6 @@
 export const GET_ARTIST = "GET_ARTIST"
 export const GET_ALBUM = "GET_ALBUM"
+export const ADD_SONG_TO_PLAYLIST = "ADD_SONG_TO_PLAYLIST"
 
 export const getArtistAction = (artistName, category) => {
   return (dispatch) => {
@@ -120,3 +121,9 @@ export const getAlbumArtist = (artistId) => {
     }, 1000)
   }
 }
+
+export const addToPlaylistAction = (track) => ({
+  type: ADD_SONG_TO_PLAYLIST,
+
+  payload: track,
+})
