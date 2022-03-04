@@ -14,10 +14,10 @@ addToLiked: (songs) => dispatch(addToLikedAction(songs)),
 });
 
 const AlbumCard = ({ song , likedSongs, addToLiked, removeFromLiked }) => {
-  const isLiked = likedSongs.includes(track);
+  const isLiked = likedSongs.includes(song);
   console.log(isLiked, likedSongs);
   const toggleLiked = () => {
-    isLiked ? removeFromLiked(track) : addToLiked(track);
+    isLiked ? removeFromLiked(song) : addToLiked(song);
   };
   return (
     <div className="col text-center" id={song?.id}>
@@ -28,7 +28,7 @@ const AlbumCard = ({ song , likedSongs, addToLiked, removeFromLiked }) => {
       </Link>
       <p>
         <Link to={"/album/" + song?.album.id}>
-          <span>Album:&nbsp;</span>
+          
           <span>
           {isLiked ? (
             <AiFillHeart
@@ -44,6 +44,7 @@ const AlbumCard = ({ song , likedSongs, addToLiked, removeFromLiked }) => {
             />
           )}
         </span>
+        <span>Album:&nbsp;</span>
           <span>
             "
             {song?.album.title.length < 16
