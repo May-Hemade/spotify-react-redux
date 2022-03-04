@@ -1,4 +1,5 @@
 export const GET_ARTIST = "GET_ARTIST"
+export const GET_ALBUM = "GET_ALBUM"
 
 export const getArtistAction = (artistName, category) => {
   return (dispatch) => {
@@ -32,6 +33,41 @@ export const getArtistAction = (artistName, category) => {
         }
       } catch (error) {
         console.log(error)
+      }
+    }, 1000)
+  }
+}
+
+export const getAlbumAction = (albumId) => {
+  return (dispatch) => {
+    setTimeout(async () => {
+      let headers = new Headers({
+        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+        "X-RapidAPI-Key": "222902beabmshb95a65b737cead6p1f3ac9jsn23ced94c0d20",
+      })
+
+      try {
+        let response = await fetch(
+          "https://striveschool-api.herokuapp.com/api/deezer/album/" + albumId,
+          {
+            method: "GET",
+            headers,
+          }
+        )
+
+        if (response.ok) {
+          let album = await response.json()
+
+          dispatch({
+            type: GET_ALBUM,
+            payload: {
+              album: album,
+              songs: album.tracks.data,
+            },
+          })
+        }
+      } catch (exception) {
+        console.log(exception)
       }
     }, 1000)
   }
