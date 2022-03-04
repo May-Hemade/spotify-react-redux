@@ -11,7 +11,7 @@ const Player = ({ selectedSong }) => (
           <div>
             {selectedSong && selectedSong !== undefined ? (
               <div>
-                <img width={25} src={selectedSong.cover} />
+                <img width={30} src={selectedSong.cover} />
                 <div className="text-center text-white">
                   {selectedSong.artist && selectedSong.artist.name}
                 </div>
