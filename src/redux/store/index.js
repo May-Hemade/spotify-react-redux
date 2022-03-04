@@ -1,24 +1,28 @@
-import { createStore, combineReducers, compose, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import likedReducer from "../reducers/likedReducer"
+import { createStore, combineReducers, compose, applyMiddleware } from "redux"
+import thunk from "redux-thunk"
+import albumReducer from "../reducers/albumReducer"
+import homeReducer from "../reducers/homeReducer"
 
-const aComposeFunctionThatAlwaysWorks = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const aComposeFunction = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 export const initialState = {
   liked: {
     songs: [],
   },
-  album : {
+  
+  album: {
+    album: {},
     songs: [],
   },
-};
+}
 
 const bigReducer = combineReducers({
-  liked: likedReducer,
-});
+  home: homeReducer,
+  album: albumReducer,
+})
 
 export const configureStore = createStore(
   bigReducer,
   initialState,
-  aComposeFunctionThatAlwaysWorks(applyMiddleware(thunk))
+  aComposeFunction(applyMiddleware(thunk))
 );
