@@ -48,6 +48,9 @@ class Sidebar extends React.Component {
                       Library
                     </Link>
                   </li>
+                  <li className="nav-item nav-link">
+                    <Playlist></Playlist>
+                  </li>
                   {this.props.location.pathname === "/" && (
                     <li>
                       <div className="input-group mt-3">
@@ -82,9 +85,6 @@ class Sidebar extends React.Component {
                       </div>
                     </li>
                   )}
-                  <li>
-                    <Playlist></Playlist>
-                  </li>
                 </ul>
               </div>
             </div>

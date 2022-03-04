@@ -1,4 +1,5 @@
 import React from "react"
+import { MusicNoteList } from "react-bootstrap-icons"
 import { connect } from "react-redux"
 
 const mapStateToProps = (state) => ({
@@ -10,7 +11,7 @@ const mapDispatchToProps = (dispatch) => ({})
 function Playlist({ playlist }) {
   return (
     <div className="text-light ">
-      <i class="fa-thin fa-play fa-lg text-light "></i>
+      <MusicNoteList></MusicNoteList>
       <span className="ml-2"> PlayList </span>
       <ul>
         {playlist.map((track, i) => (
