@@ -1,6 +1,18 @@
 export const GET_ARTIST = "GET_ARTIST"
 export const GET_ALBUM = "GET_ALBUM"
 export const ADD_SONG_TO_PLAYLIST = "ADD_SONG_TO_PLAYLIST"
+export const ADD_TO_LIKED = "ADD_TO_LIKED";
+export const REMOVE_FROM_LIKED = "REMOVE_FROM_LIKED";
+
+
+export const addToLikedAction = (song) => ({
+    type: ADD_TO_LIKED,
+    payload: song,
+  });
+  export const removeFromLikedAction = (song) => ({
+    type: REMOVE_FROM_LIKED,
+    payload: song,
+  });
 
 export const getArtistAction = (artistName, category) => {
   return (dispatch) => {
